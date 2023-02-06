@@ -1,0 +1,13 @@
+---
+- name: Playbook - Install figlet #metadata
+  hosts: planetexpress:!farnsowrth # get all from planetexpress, exclude farnsworth
+  connection: ssh #default ssh.py
+  gather_facts: yes #default yes
+
+  tasks: #list of what we want to do
+  - name: using apt to install figlet #metadata
+    apt: #the module we want to run
+        name: figlet #parameter names has the value figlet
+        state: present #parameter state has the vlue present
+    become: yes #elevate to admin/sudo
+
