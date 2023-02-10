@@ -1,0 +1,25 @@
+---
+- name: 30 minute class challengs - create a playbook
+  hosts: planetexpress #only planetexpress
+  gather_facts: yes #get dem big facks
+  tasks: #do these things
+
+    - name: create directory on remote host
+      become_user: root #specify acct
+      become: true #escalate privs
+      file: 
+        path: "/home/{{ ansible_user }}/testfiles/" #where dem file at?
+        state: directory #its s directory
+        owner: "{{ ansible_user }}" #jinja bzns to set owner to the host variable local owner of homedir
+        group: "{{ ansible_user }}" #jinja bzns get group to the same as above
+        mode: "0777" #cuz lulz and errbody can do errthang rwx
+      
+          #    - name: create directory and put some textsts
+          # copy:
+          #dest: "/home/{{ ansible_user }}/testfiles/ehlo-{{ ansible_user }}.txt"
+          #content: "Hi there, {{ansible_user }}. Looks like it's {{ ansible_date_time.date }}. You're runniong  {{ ansible_os_family }}, pretty cool... here have an antivirus..."
+
+          # - name: "put antivirus"
+          # get_url:
+          #url: http://www.clamav.net/downloads/production/clamav-0.99.3.tar.gz
+          # dest: ~/home/{{ ansible_user }}/testfiles/clamav-0.99.3.tar.gz
